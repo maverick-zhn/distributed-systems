@@ -1,0 +1,4 @@
+cmake_minimum_required(VERSION 3.25.2 FATAL_ERROR)
+project(distributed-systems src/main.cpp)
+target_compile_features(distributed-systems PRIVATE cxx_auto_type)
+add_executable(${PROJECT_NAME} src/main.cpp)
