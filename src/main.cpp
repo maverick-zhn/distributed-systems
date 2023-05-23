@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     int _maxSD;
     struct sockaddr_in address;
 
-    char buffer[BUFFER_SIZE]; // data buffer of 1K
+    char buffer[BUFFER_SIZE + 1]; // data buffer of 1K + 1 bytes
     const char *replyBuffer = "--> [ACKED by server]\r\n";
 
     // set of socket descriptors
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
             {
                 // Check if it was for closing , and also read the
                 // incoming message
-                if ((_valRead = read(sd, buffer, 1024)) == 0)
+                if ((_valRead = read(sd, buffer, BUFFER_SIZE)) == 0)
                 {
                     // Somebody disconnected , get his details and print
                     getpeername(sd, (struct sockaddr *)&address,
